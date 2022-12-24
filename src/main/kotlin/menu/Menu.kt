@@ -2,6 +2,7 @@ package menu
 
 import task0.Problem
 import task0.Unknown
+import task1.CalorieCounting
 
 class Menu {
     companion object {
@@ -11,15 +12,18 @@ class Menu {
             printWelcome()
             while (true) {
                 printMenu()
-                val selection = readLine()
-                if (!selection.equals("exit", true)) {
-                    val problem: Problem = when (selection?.toInt() ?: 0) {
-                        else -> Unknown()
+                val selection = readlnOrNull()
+                if (!selection.isNullOrBlank()) {
+                    if (!"exit".equals(selection, true)) {
+                        val problem: Problem = when (selection?.toInt() ?: 0) {
+                            1 -> CalorieCounting()
+                            else -> Unknown()
+                        }
+                        printSolution(problem)
+                    } else {
+                        printGoodbye()
+                        return
                     }
-                    printSolution(problem)
-                } else {
-                    printGoodbye()
-                    return
                 }
             }
         }
@@ -30,7 +34,7 @@ class Menu {
 
         private fun printMenu() {
             println("Select problem to solve by writing its number:")
-
+            println("1. CalorieCounting")
             println("Write 'exit' to finish")
         }
 
@@ -41,7 +45,7 @@ class Menu {
             println()
         }
 
-        private fun printGoodbye(){
+        private fun printGoodbye() {
             println("Thanks, bye!")
         }
     }

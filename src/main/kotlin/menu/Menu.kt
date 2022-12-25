@@ -3,6 +3,7 @@ package menu
 import task0.Problem
 import task0.Unknown
 import task1.CalorieCounting
+import task2.RockPaperScissors
 
 class Menu {
     companion object {
@@ -17,6 +18,7 @@ class Menu {
                     if (!"exit".equals(selection, true)) {
                         val problem: Problem = when (selection?.toInt() ?: 0) {
                             1 -> CalorieCounting()
+                            2 -> RockPaperScissors()
                             else -> Unknown()
                         }
                         printSolution(problem)
@@ -35,6 +37,7 @@ class Menu {
         private fun printMenu() {
             println("Select problem to solve by writing its number:")
             println("1. CalorieCounting")
+            println("2. RockPaperScissors")
             println("Write 'exit' to finish")
         }
 
